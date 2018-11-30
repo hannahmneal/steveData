@@ -4439,15 +4439,24 @@ const githubData = [
 
 
 
-for (let i = 0; i <=30; i ++) {
-// console.log(i);                                                              Test. Prints numbers 0-30
-//    console.log(githubData[i]);                                               Test. Prints the objects in each array.
-  let commitArray = githubData[i].payload.commits;
-  //console.log(commitArray);
-    for (let j = 0; j < githubData[i].payload.commits; j++) {
-    console.log(commitArray[j]);
- }
-}
+// for (let i = 0; i <=30; i ++) {
+// // console.log(i);                                                              Test. Prints numbers 0-30
+// //    console.log(githubData[i]);                                               Test. Prints the objects in each array.
+//   let commitArray = githubData[i].payload.commits;
+//   //console.log(commitArray);
+//     for (let j = 0; j < githubData[i].payload.commits; j++) {
+//     console.log(commitArray[j]);
+//  }
+// }
+
+let commits = 0
+
+for (let i=0; i < githubData.length; i++) {
+    if("commits" in githubData[i].payload) {
+        const commitEvents = githubData[i].payload.commits.length;
+        commits += commitEvents;
+    }
+    }
 
 
 
