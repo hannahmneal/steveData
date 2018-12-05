@@ -4449,6 +4449,12 @@ const githubData = [
 //  }
 // }
 
+//  ****        ****        ****        ****        ****        ****        ****
+
+//Lists object categories:
+console.log(githubData);
+
+
 
 let commits = 0         //Scope: commits declared outside of function with "let", not "const". What happens if you use "const" instead?
 
@@ -4466,15 +4472,20 @@ for (let i=0; i < githubData.length; i++) {
 //  a. declare a variable for "each event type"
 //  b. set up a counter for all instances of "type" in gitData
 
-let type = 0
+let pushEvent = 0;
+let pullRequestEvent = 0;
+let deleteEvent = 0;
+let createEvent = 0;
+let issueCommentEvent = 0;
+//let type = 0
 
 for(let i=0; i < githubData.length; i++) {          // EFFICIENCY: Much of this code is the same as 4453-4461; try writing a loop that handles the repetitive code.
-      if("type" in githubData[i]) {
+      if("type" in githubData[i].type) {
         const eachEventType = githubData[i].type.length;
-        type += eachEventType;
+        pushEvent += eachEventType;
+        console.log(`Push Events: ${pushEvent}`);
   } 
 }
-console.log(`Number of event types = ${type}`);
 
                       //  ****  Some of THE THINGS I'VE TRIED   ****
 
@@ -4534,7 +4545,7 @@ let pullRequest= [];    // This the format Russ used set up his variable; not su
 for (let i=0; i < githubData.length; i++) {
   if (githubData[i].type === "PullRequestEvent") {
     const pullRequestEvent = githubData[i].type.length
-    if(pullRequestEvent.indexOf(pullRequest) === 0) {
+    if(pullRequestEvent.indexOf(pullRequest) === -1) {
       pullRequestEvent.push(pullRequest)
     }
   }
