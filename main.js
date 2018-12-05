@@ -4457,8 +4457,8 @@ for (let i=0; i < githubData.length; i++) {
         const commitEvents = githubData[i].payload.commits.length;          
         commits += commitEvents;        // commits can be accessed within the "for" and "if" statements because it was declared  with "let".
     }
-    }
-    console.log("Number of commits = " + commits);         //Test; Returns: 59.
+  }
+    console.log(`Number of commits = ${commits}`);         //Test; Returns: 59.
 
 
 //          ****    How many of each event type? (PullRequestEvent, PushEvent, etc)     ****
@@ -4468,31 +4468,75 @@ for (let i=0; i < githubData.length; i++) {
 
 let type = 0
 
-for (let i=0; i < githubData.length; i++){          // EFFICIENCY: Much of this code is the same as 4453-4461; try writing a loop that handles the repetitive code.
-    if("type" in githubData[i]) {
+for(let i=0; i < githubData.length; i++) {          // EFFICIENCY: Much of this code is the same as 4453-4461; try writing a loop that handles the repetitive code.
+      if("type" in githubData[i]) {
         const eachEventType = githubData[i].type.length;
         type += eachEventType;
-    }
+  } 
 }
+console.log(`Number of event types = ${type}`);
 
-console.log("Each event type = " + type);   // Test; Returns: 367.
+                      //  ****  Some of THE THINGS I'VE TRIED   ****
 
 //    ****    List all Github users who submitted a pull request that was approved by Steve.   ****
-
 //  Goal: Use code on lines 4471-4476 above to select only pull requests from "type" and "eachEventType"
 // a. Declare a variable to store the "pull requests" found in "type" 
 // b. Select all githubData.type that === "Pull Request"
-// c. Distinguish pull requests approved by Steve from other pull requests (approved by others)
-//  
+// c. Distinguish pull requests approved by Steve from other pull requests (approved by others?)
 
-let pullRequest = 0;
-for (let i=0; i < githubData.length; i++){         
-    if("type" in githubData[i] === "PullRequestEvent") {
-        const pullRequestEvent = githubData[i].type.length;
-        type += pullRequestEvent;
+
+//console.log("Each event type = " + type);   // Test; Returns: 367.
+
+//let pullRequestEvents = 0
+
+// for (let i=0; i < githubData.length; i++) {
+// if(object.value("PullRequestEvent") in githubData[i]) {
+//   console.log(object.value(type));
+// } 
+// }
+// console.log(`Number of pull request events = ${type}`);
+
+//console.log(`Number of pull request events = ${object.values(githubData)}`);
+
+// let pullRequest = 0
+// for(i = 0; i < githubData[i].type; i++) {
+//   if(githubData[i].object.value === "PullRequestEvent") {
+//   }
+// }
+// console.log(`Pull Request Event ${pullRequest}`);
+
+
+// let pullRequest = 0
+// for(i = 0; i < githubData[i].type; i++) {
+//   if("PullRequestEvent" in "type" === githubData[i].object.value) {
+//   }
+// }
+// console.log(`Pull Request Event ${pullRequest}`);
+
+
+//     for(i = 0; i < githubData; i++) {
+//      if(githubData[i].type.value === "PullRequestEvent") {
+//        const eachPullEvent = githubData[i].type.length;
+//        type += eachPullEvent;
+//     }
+//   }
+
+// console.log(`Pull Request Event = ${eachPullEvent}`);
+
+//This is how       // let pullRequestEvent = 0                                   
+//Russ did #2       // for (i=0; i < githubData.length; i++) {
+                    //   pullRequestEvent ++;
+                    // }
+                    // console.log(`Pull Request Events = ${pullRequestEvent}`);
+
+let pullRequest= [];    // This the format Russ used set up his variable; not sure why it works this way. Why do does it have to be set up with brackets?
+
+for (let i=0; i < githubData.length; i++) {
+  if (githubData[i].type === "PullRequestEvent") {
+    const pullRequestEvent = githubData[i].type.length
+    if(pullRequestEvent.indexOf(pullRequest) === 0) {
+      pullRequestEvent.push(pullRequest)
     }
+  }
 }
-
-console.log("Total Pull Request Events = " + pullRequestEvent);
-
-
+console.log(pullRequest);
